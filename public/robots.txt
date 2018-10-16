@@ -1,7 +1,0 @@
-User-agent: *
-Disallow: /register
-Disallow: /password/reset
-Disallow: /login
-Disallow: *_escaped_fragment_=
-Sitemap: https://intelifin.ru/sitemap.xml
-
