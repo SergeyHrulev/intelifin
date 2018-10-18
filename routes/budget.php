@@ -16,7 +16,5 @@ Route::get('/add-staff', [
     'uses' => 'Budget\StaffController@create'
 ]);
 
-Route::get('/add-payment', [
-    'as' => 'payment.add',
-    'uses' => 'Budget\PaymentController@create'
-]);
+Route::resource('/payment', 'Budget\PaymentController');
+

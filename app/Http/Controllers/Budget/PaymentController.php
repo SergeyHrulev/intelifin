@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Budget;
 
 use App\Budget\Article;
 use App\Budget\Department;
+use App\Budget\Payment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -14,9 +15,12 @@ class PaymentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Payment $payment)
     {
-        //
+        $data = $payment->with( 'barticles.mainArticle.section', 'department.structuralUnit')->get();
+        return view('budget.reports.budget', [
+            'data' => $data
+        ]);
     }
 
     /**
@@ -42,7 +46,11 @@ class PaymentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if (Payment::create($request->all())){
+            return redirect()->route('payment.create');
+        } else {
+            return abort(500);
+        }
     }
 
     /**

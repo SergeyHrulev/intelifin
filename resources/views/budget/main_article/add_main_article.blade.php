@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+    @include('budget.left_menu')
     <div class="container">
         <div class="row justify-content-md-center">
             <div class="col-8 mb-5">

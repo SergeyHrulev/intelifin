@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+    @include('budget.left_menu')
     <div class="container">
         <div class="row justify-content-md-center">
             <div class="col-6">
@@ -7,8 +8,10 @@
                     <div class="alert alert-info" role="alert">
                         {{ $section->section_name }}
                     </div>
-                    @endforeach
+                @endforeach
             </div>
+        </div>
+        <div class="row justify-content-md-center">
             <div class="col-6">
                 <form action="{{ route('section.store') }}" method="post">
                     {{ csrf_field() }}

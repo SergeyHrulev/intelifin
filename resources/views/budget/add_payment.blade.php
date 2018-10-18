@@ -1,15 +1,17 @@
 @extends('layouts.app')
 @section('content')
+    @include('budget.left_menu')
 <div class="container">
     <div class="row justify-content-md-center">
         <div class="col-6">
-            <form action="">
+            <form action="{{ route('payment.store') }}" method="post">
+                {{ csrf_field() }}
                 <div class="form-group">
                     <label for="">Наименование статьи</label>
                     <select name="barticles_id" id="barticle_id" class="form-control">
                         <option value="0">-- Выберите статью --</option>
                         @foreach($articles as $article)
-                            <option value="{{ $article->id }}">{{ $article->article->name }}</option>
+                            <option value="{{ $article->id }}">{{ $article->article_name }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -17,8 +19,8 @@
                     <label for="">Наименование Департамента</label>
                     <select name="departments_id" id="departments_id" class="form-control">
                         <option value="0">-- Выберите отдел --</option>
-                        @foreach($articles as $article)
-                            <option value="{{ $article->id }}">{{ $article->article->name }}</option>
+                        @foreach($departments as $department)
+                            <option value="{{ $department->id }}">{{ $department->department_name }}</option>
                         @endforeach
                     </select>
                 </div>

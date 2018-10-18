@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Budget;
 
 use App\Budget\Department;
+use App\Budget\Payment;
 use App\Budget\StructuralUnit;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -14,9 +15,23 @@ class DepartmentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Payment $payment, $id = 0)
     {
-        //
+        if ($id === 0){
+            $data = Payment::with('department')->get();
+            $departments = Department::all();
+            return view('budget.reports.department', [
+                'data' => $data,
+                'departments' => $departments
+            ]);
+        }else{
+            $data = Payment::with('departments')->where('departments_id', $id)->get();
+            $departments = Department::all();
+            return view('budget.reports.department', [
+                'data' => $data,
+                'departments' => $departments
+            ]);
+        }
     }
 
     /**
