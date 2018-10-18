@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMainArticlesTable extends Migration
+class CreateStaffTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,16 @@ class CreateMainArticlesTable extends Migration
      */
     public function up()
     {
-        Schema::create('main_articles', function (Blueprint $table) {
+        Schema::create('staff', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('sections_id')->unsigned()->index();
-            $table->string('main_article_name')->index();
+            $table->integer('departments_id')->unsigned()->index();
+            $table->string('name');
+            $table->string('surname');
+            $table->string('second_name')->nullable();
+            $table->double('wage');
+            $table->double('bonus')->nullable();
             $table->softDeletes();
             $table->timestamps();
-
-            //$table->foreign('section_controllers_id')->references('id')->on('section_controllers')->onDelete('cascade');
         });
     }
 
@@ -31,6 +33,6 @@ class CreateMainArticlesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('main_articles');
+        Schema::dropIfExists('staff');
     }
 }

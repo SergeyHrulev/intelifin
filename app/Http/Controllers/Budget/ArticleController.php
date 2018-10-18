@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Budget;
 
+use App\Budget\Article;
+use App\Budget\MainArticle;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class Article extends Controller
+class ArticleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -22,9 +24,15 @@ class Article extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Article $article)
     {
-        //
+        $articles = $article->with('mainArticle')->get();
+        $mainArticle = MainArticle::all();
+        //dd($articles);
+        return view('budget.article.add_article', [
+            'mainArticles' => $mainArticle,
+            'articles' => $articles
+        ]);
     }
 
     /**
@@ -35,7 +43,15 @@ class Article extends Controller
      */
     public function store(Request $request)
     {
-        //
+//        $data = $request->all();
+//
+//        return view('budget.test', ['data' => $data]);
+
+        if (Article::create($request->all())){
+            return redirect()->route('article.create');
+        } else {
+            return abort(500);
+        }
     }
 
     /**
@@ -46,7 +62,7 @@ class Article extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**

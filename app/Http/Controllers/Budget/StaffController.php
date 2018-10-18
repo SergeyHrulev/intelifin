@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers\Budget;
 
-use App\Budget\Department;
-use App\Budget\StructuralUnit;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class DepartmentController extends Controller
+class StaffController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -26,12 +24,7 @@ class DepartmentController extends Controller
      */
     public function create()
     {
-        $departments = Department::with('structuralUnit')->get();
-        $structuralUnit = StructuralUnit::all();
-        return view('budget.department.add_department', [
-            'departments' => $departments,
-            'structuralUnits' => $structuralUnit
-        ]);
+        return view('budget.staff.add_staff');
     }
 
     /**
@@ -42,20 +35,16 @@ class DepartmentController extends Controller
      */
     public function store(Request $request)
     {
-        if (Department::create($request->all())){
-            return redirect()->route('department.create');
-        } else {
-            return abort(500);
-        }
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Budget\Department  $department
+     * @param  \App\Budget\Staff  $staff
      * @return \Illuminate\Http\Response
      */
-    public function show(Department $department)
+    public function show(Staff $staff)
     {
         //
     }
@@ -63,10 +52,10 @@ class DepartmentController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Budget\Department  $department
+     * @param  \App\Budget\Staff  $staff
      * @return \Illuminate\Http\Response
      */
-    public function edit(Department $department)
+    public function edit(Staff $staff)
     {
         //
     }
@@ -75,10 +64,10 @@ class DepartmentController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Budget\Department  $department
+     * @param  \App\Budget\Staff  $staff
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Department $department)
+    public function update(Request $request, Staff $staff)
     {
         //
     }
@@ -86,10 +75,10 @@ class DepartmentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Budget\Department  $department
+     * @param  \App\Budget\Staff  $staff
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Department $department)
+    public function destroy(Staff $staff)
     {
         //
     }

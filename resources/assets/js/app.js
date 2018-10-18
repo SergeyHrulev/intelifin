@@ -9,6 +9,18 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+import Vuetify from 'vuetify';
+Vue.use(Vuetify);
+
+import colors from 'vuetify/es5/util/colors';
+Vue.use(Vuetify, {
+    theme: {
+        primary: colors.purple,
+        secondary: colors.grey.darken1,
+        accent: colors.shades.black,
+        error: colors.red.accent3
+    }
+});
 //Vue.use(require('vue-touch'));
 /**
  * Next, we will create a fresh Vue application instance and attach it to

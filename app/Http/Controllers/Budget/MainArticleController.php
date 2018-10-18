@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Budget;
 
 use App\Budget\MainArticle;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Budget\Section;
 
 class MainArticleController extends Controller
 {
@@ -12,9 +14,10 @@ class MainArticleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(MainArticle $mainArticle)
     {
-        //
+//        $data = $mainArticle->with('section')->first();
+//        dd($data->section->section_name);
     }
 
     /**
@@ -22,9 +25,14 @@ class MainArticleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(MainArticle $mainArticle)
     {
-        //
+        $sections = Section::all();
+        $mainArticle = $mainArticle->with('section')->get();
+        return view('budget.main_article.add_main_article', [
+            "sections" => $sections,
+            "mainArticles" => $mainArticle
+        ]);
     }
 
     /**
@@ -35,7 +43,13 @@ class MainArticleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if (MainArticle::create($request->all())){
+            return redirect()->route('main-article.create');
+        } else {
+            return redirect()->back();
+        }
+//        $data = $request->all();
+//        return view('budget.test', ['data' => $data]);
     }
 
     /**

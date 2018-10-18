@@ -15,7 +15,9 @@ use Spatie\Sitemap\SitemapGenerator;
 Route::get('/index.html', function (){
     return Redirect::route('main');
 });
-
+Route::get('/vuetify', function (){
+    return view('welcome');
+});
 Route::get('/', 'PageController@main')->name('main');
 Route::get('/servises', 'PageController@servises')->name('servises');
 Route::get('/fin-dictionary', 'PageController@finDictionary')->name('fin-dictionary');
@@ -45,4 +47,8 @@ Route::get('/sitemap.xml', 'SitemapController@index');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['prefix' => 'budget'], function (){
+   require base_path('routes/budget.php');
+});

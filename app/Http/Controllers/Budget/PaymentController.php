@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Budget;
 
-use App\Budget\Payment;
+use App\Budget\Article;
+use App\Budget\Department;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class PaymentController extends Controller
 {
@@ -24,7 +26,12 @@ class PaymentController extends Controller
      */
     public function create()
     {
-        //
+        $articles = Article::all();
+        $departments = Department::all();
+        return view('budget.add_payment', [
+            'articles' => $articles,
+            'departments' => $departments
+        ]);
     }
 
     /**

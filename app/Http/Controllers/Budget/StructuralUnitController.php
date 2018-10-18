@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Budget;
 
 use App\Budget\StructuralUnit;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class StructuralUnitController extends Controller
 {
@@ -24,7 +25,11 @@ class StructuralUnitController extends Controller
      */
     public function create()
     {
-        //
+//        dd(route('structural-unit.store'));
+        $structuralUnits = StructuralUnit::all();
+        return view('budget.structural_unit.add_structural_unit', [
+            'structuralUnits' => $structuralUnits
+        ]);
     }
 
     /**
@@ -35,7 +40,11 @@ class StructuralUnitController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if (StructuralUnit::create($request->all())){
+            return redirect()->route('structural-unit.create');
+        } else {
+            return abort(500);
+        }
     }
 
     /**

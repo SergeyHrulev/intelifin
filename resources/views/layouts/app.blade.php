@@ -85,5 +85,7 @@
     @include('layouts.footer')
 </footer>
 @include('layouts.enter')
+
+
 </body>
 </html>

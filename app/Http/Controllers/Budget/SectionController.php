@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Budget;
 
 use App\Budget\Section;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class SectionController extends Controller
 {
@@ -24,7 +25,8 @@ class SectionController extends Controller
      */
     public function create()
     {
-        //
+        $sections = Section::all();
+        return view('budget.section.add_section', ['sections' => $sections]);
     }
 
     /**
@@ -35,7 +37,12 @@ class SectionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if (Section::create($request->all())){
+            return redirect()->route('section.create');
+        } else {
+            return redirect()->route('section.create')->with(['message' => 'failed']);
+        }
+
     }
 
     /**
