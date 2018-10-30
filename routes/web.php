@@ -52,3 +52,7 @@ Auth::routes();
 Route::group(['prefix' => 'budget'], function (){
    require base_path('routes/budget.php');
 });
+
+Route::group(['prefix' => 'dashboard'], function (){
+   require base_path('routes/dashboard/dashboard.php');
+});
