@@ -9100,7 +9100,7 @@ var rboxStyle = new RegExp( cssExpand.join( "|" ), "i" );
 
 ( function() {
 
-	// Executing both pixelPosition & boxSizingReliable tests require only one layout
+	// Executing both pixelPosition & boxSizingReliable tests require only one layouts
 	// so they're executed at the same time to save the second computation.
 	function computeStyleTests() {
 
@@ -22295,7 +22295,7 @@ var TransitionGroup = {
     }
 
     // we divide the work into three loops to avoid mixing DOM reads and writes
-    // in each iteration - which helps prevent layout thrashing.
+    // in each iteration - which helps prevent layouts thrashing.
     children.forEach(callPendingCbs);
     children.forEach(recordPosition);
     children.forEach(applyTranslation);
@@ -52597,7 +52597,7 @@ var __assign = undefined && undefined.__assign || function () {
     },
     methods: {
         /**
-         * Update the application layout
+         * Update the application layouts
          *
          * @return {number}
          */
@@ -52903,7 +52903,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _grid__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./grid */ "./src/components/VGrid/grid.js");
 
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(_grid__WEBPACK_IMPORTED_MODULE_1__["default"])('layout'));
+/* harmony default export */ __webpack_exports__["default"] = (Object(_grid__WEBPACK_IMPORTED_MODULE_1__["default"])('layouts'));
 
 /***/ }),
 
@@ -55300,7 +55300,7 @@ var __assign = undefined && undefined.__assign || function () {
             if (this.right && e.touchstartX >= this.touchArea.right) this.isActive = true;else if (!this.right && this.isActive) this.isActive = false;
         },
         /**
-         * Update the application layout
+         * Update the application layouts
          *
          * @return {number}
          */
@@ -59441,7 +59441,7 @@ var __assign = undefined && undefined.__assign || function () {
     },
     methods: {
         /**
-         * Update the application layout
+         * Update the application layouts
          *
          * @return {number}
          */
@@ -60997,7 +60997,7 @@ var __assign = undefined && undefined.__assign || function () {
                 var height = input.scrollHeight;
                 var minHeight = parseInt(this.rows, 10) * parseFloat(this.rowHeight);
                 // This has to be done ASAP, waiting for Vue
-                // to update the DOM causes ugly layout jumping
+                // to update the DOM causes ugly layouts jumping
                 input.style.height = Math.max(minHeight, height) + 'px';
             }
         },
@@ -61831,7 +61831,7 @@ var __assign = undefined && undefined.__assign || function () {
             this.previousScroll = this.currentScroll;
         },
         /**
-         * Update the application layout
+         * Update the application layouts
          *
          * @return {number}
          */
@@ -66130,7 +66130,7 @@ __webpack_require__.r(__webpack_exports__);
  *
  * @mixin
  *
- * Used in layout components (drawer, toolbar, content)
+ * Used in layouts components (drawer, toolbar, content)
  * to avoid an entry animation when using SSR
  */
 /* harmony default export */ __webpack_exports__["default"] = (vue__WEBPACK_IMPORTED_MODULE_0___default.a.extend({
