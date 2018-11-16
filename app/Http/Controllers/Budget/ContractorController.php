@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Budget;
 
-use App\Budget\Article;
-use App\Budget\MainArticle;
+use App\Budget\Contractor;
+use App\Budget\PropType;
+use App\Customers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class ArticleController extends Controller
+class ContractorController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +17,10 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articles = Article::all();
-        return view('budget.article.add_article', [
-            'articles' => $articles,
+        $prop_types = PropType::all();
+        //dd(json_encode($prop_types));
+        return view('budget.pages.contractor', [
+            'prop_types' => $prop_types,
         ]);
     }
 
@@ -27,15 +29,10 @@ class ArticleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Article $article)
+    public function create()
     {
-        $articles = $article->with('mainArticle')->get();
-        $mainArticle = MainArticle::all();
-        //dd($articles);
-        return view('budget.article.add_article', [
-            'mainArticles' => $mainArticle,
-            'articles' => $articles
-        ]);
+        $data = Contractor::with('propType')->get();
+        return $data;
     }
 
     /**
@@ -46,35 +43,32 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-//        $data = $request->all();
-//
-//        return view('budget.test', ['data' => $data]);
-
-        if (Article::create($request->all())){
-            return redirect()->route('article.create');
-        } else {
-            return abort(500);
+        try{
+            $data = Contractor::create($request->all());
+            return $data;
+        } catch (\Exception $e){
+            return 'произошла ошибка';
         }
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Customers  $customers
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Customers $customers)
     {
-
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Customers  $customers
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Customers $customers)
     {
         //
     }
@@ -83,10 +77,10 @@ class ArticleController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Customers  $customers
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Customers $customers)
     {
         //
     }
@@ -94,10 +88,10 @@ class ArticleController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Customers  $customers
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Customers $customers)
     {
         //
     }

@@ -28,7 +28,9 @@ Vue.use(Vuetify, {
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
+//Vue.component('example-component', require('./components/ExampleComponent.vue'));
+Vue.component('add-contractor-component', require('./components/AddContractorComponent.vue'));
+Vue.component('get-contractor-component', require('./components/GetContractorsComponent.vue'));
 
 const app = new Vue({
     el: '#app',

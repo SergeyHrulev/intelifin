@@ -1,6 +1,5 @@
-@extends('layouts.app')
+@extends('budget.layouts.app')
 @section('content')
-    @include('budget.left_menu')
     <div class="container-fluid">
         <div class="row">
             <table class="table">
@@ -24,19 +23,19 @@
                 <tbody>
                 @foreach($data as $item)
                     <tr>
-                        <th></th>
-                        <th>{{ $item->department->department_name }}</th>
-                        <th>{{ $item->department->structuralUnit->structural_unit_name }}</th>
-                        <th>{{ $item->barticles->article_name }}</th>
-                        <th>{{ $item->barticles->article_code }}</th>
-                        <th>{{ $item->barticles->mainArticle->main_article_name }}</th>
-                        <th>{{ $item->barticles->mainArticle->section->section_name }}</th>
-                        <th>{{ $item->payment_name }}</th>
-                        <th>{{ $item->summ }}</th>
-                        <th>{{ $item->bdr_plan !== null ? $item->bdr_plan : ' - ' }}</th>
-                        <th>{{ $item->bdr_fact !== null ? $item->bdr_fact : ' - ' }}</th>
-                        <th>{{ $item->bdds_plan !== null ? $item->bdds_plan : ' - ' }}</th>
-                        <th>{{ $item->bdr_bdds_fact !== null ? $item->bdds_fact : ' - ' }}</th>
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $item->department->department_name }}</td>
+                        <td>{{ $item->department->structuralUnit->structural_unit_name }}</td>
+                        <td>{{ $item->barticles->article_name }}</td>
+                        <td>{{ $item->barticles->article_code }}</td>
+                        <td>{{ $item->barticles->mainArticle->main_article_name }}</td>
+                        <td>{{ $item->barticles->mainArticle->section->section_name }}</td>
+                        <td>{{ $item->payment_name }}</td>
+                        <td>{{ $item->summ }}</td>
+                        <td>{{ $item->bdr_plan !== null ? $item->bdr_plan : ' - ' }}</td>
+                        <td>{{ $item->bdr_fact !== null ? $item->bdr_fact : ' - ' }}</td>
+                        <td>{{ $item->bdds_plan !== null ? $item->bdds_plan : ' - ' }}</td>
+                        <td>{{ $item->bdr_bdds_fact !== null ? $item->bdds_fact : ' - ' }}</td>
                     </tr>
                     @endforeach
                 </tbody>
