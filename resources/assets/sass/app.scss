@@ -9,7 +9,9 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 @import "~material-design-icons/iconfont/material-icons.css";
-//@import "~@fortawesome/fontawesome-free/scss/fontawesome.scss";
+@import "~@fortawesome/fontawesome-free/scss/fontawesome.scss";
+
+@import "../summernote/dist/summernote.css";
 
 @import "~vuetify/dist/vuetify.css";
 

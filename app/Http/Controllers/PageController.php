@@ -19,6 +19,8 @@ class PageController extends Controller
         $head = Seo::extractHead($data);
         $servises = Servise::all();
 
+        dump($servises);
+
         return view('pages.main', [
             'servises' => $servises,
             'head' => $head

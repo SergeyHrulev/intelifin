@@ -14,7 +14,7 @@ class AddForeignMainArticles extends Migration
     public function up()
     {
         Schema::table('main_articles', function (Blueprint $table) {
-            $table->foreign('sections_id')->references('id')->on('sections')->onDelete('cascade');
+            $table->foreign('section_controllers_id')->references('id')->on('sections')->onDelete('cascade');
         });
     }
 

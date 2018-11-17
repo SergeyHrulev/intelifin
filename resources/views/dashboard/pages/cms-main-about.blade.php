@@ -1,11 +1,11 @@
 @extends('dashboard.layouts.app')
 @section('content')
 			<div class="cms-content">
-							<div class="cms-about">
+
+                <div id="summernote"></div>
+                <div class="cms-about">
 
 								<h2>О нас</h2>
-
-
 								<div class="cms-about__content">
 
 									<div class="cms-about__image">
@@ -39,4 +39,5 @@
 
 			</div>
 			<!-- /cms-content -->
+
 @endsection

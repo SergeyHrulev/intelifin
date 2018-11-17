@@ -7,7 +7,9 @@
 
 require('./bootstrap');
 
-window.Vue = require('vue');
+//window.Vue = require('vue');
+
+import Vue from 'vue';
 
 import Vuetify from 'vuetify';
 Vue.use(Vuetify);
@@ -21,7 +23,11 @@ Vue.use(Vuetify, {
         error: colors.red.accent3
     }
 });
-//Vue.use(require('vue-touch'));
+
+require('../summernote/dist/summernote');
+require('../summernote/dist/lang/summernote-ru-RU');
+
+//
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -29,13 +35,14 @@ Vue.use(Vuetify, {
  */
 
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
+Vue.component('create-article-component', require('./components/CreateArticleComponent.vue'));
 
 const app = new Vue({
     el: '#app',
     data() {
         return {
-            visible: false
-        }
+            visible: false,
+            }
     },
     methods: {
         openSidebar() {
@@ -50,4 +57,10 @@ const app = new Vue({
 $(function () {
     $('#myTab li:last-child a').tab('show');
     $('a.link').click(function(){window.open($(this).attr("rel"));return false;});
+});
+
+$(document).ready(function() {
+    $('#summernote').summernote({
+        lang: 'ru-Ru',
+    });
 });

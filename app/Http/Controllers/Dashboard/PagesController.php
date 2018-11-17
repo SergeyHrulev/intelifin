@@ -8,11 +8,8 @@ use App\Http\Controllers\Controller;
 class PagesController extends Controller
 {
     public function dashboard(){
-        return view('dashboard.cms-main');
-    }
 
-    public function mainPopular(){
-        return view('dashboard.pages.cms-main-popular');
+        return view('dashboard.cms-main');
     }
 
     public function mainProductDay(){

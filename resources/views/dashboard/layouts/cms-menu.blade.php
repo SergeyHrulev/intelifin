@@ -14,7 +14,7 @@
 	<div class="cms-menu__item">
 		<a class="cms-menu__link" href="#collapse1" data-toggle="collapse" aria-expanded="true">C 01 Главная</a>
 		<ul id="collapse1" class="cms-menu__submenu collapse in">
-			<li><a class="cms-menu__link" href="{{ route('mainPopular') }}">C 01.1 Популярные категории</a></li>
+			<li><a class="cms-menu__link" href="{{ url('dashboard/article/create ') }}">Написать статью</a></li>
 			<li><a class="cms-menu__link" href="{{ route('mainProductDay') }}">C 01.2 Товар дня</a></li>
 			<li><a class="cms-menu__link" href="{{ route('mainRecommended') }}">C 01.3 Рекомендуемые</a></li>
 			<li><a class="cms-menu__link" href="{{ route('mainSets') }}">C 01.4 Готовые комплекты</a></li>
