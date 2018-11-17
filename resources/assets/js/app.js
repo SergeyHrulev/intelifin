@@ -36,6 +36,8 @@ require('../summernote/dist/lang/summernote-ru-RU');
 
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
 Vue.component('create-article-component', require('./components/CreateArticleComponent.vue'));
+Vue.component('add-contractor-component', require('./components/AddContractorComponent.vue'));
+Vue.component('get-contractor-component', require('./components/GetContractorsComponent.vue'));
 
 const app = new Vue({
     el: '#app',

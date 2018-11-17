@@ -1,13 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Budget;
+namespace App\Http\Controllers;
 
-use App\Budget\Article;
-use App\Budget\MainArticle;
+use App\Budget\Deals;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
-class ArticleController extends Controller
+class DealsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,10 +14,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articles = Article::all();
-        return view('budget.article.add_article', [
-            'articles' => $articles,
-        ]);
+        //
     }
 
     /**
@@ -27,15 +22,9 @@ class ArticleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Article $article)
+    public function create()
     {
-        $articles = $article->with('mainArticle')->get();
-        $mainArticle = MainArticle::all();
-        //dd($articles);
-        return view('budget.article.add_article', [
-            'mainArticles' => $mainArticle,
-            'articles' => $articles
-        ]);
+        //
     }
 
     /**
@@ -46,35 +35,27 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-//        $data = $request->all();
-//
-//        return view('budget.test', ['data' => $data]);
-
-        if (Article::create($request->all())){
-            return redirect()->route('article.create');
-        } else {
-            return abort(500);
-        }
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Budget\Deals  $deals
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Deals $deals)
     {
-
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Budget\Deals  $deals
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Deals $deals)
     {
         //
     }
@@ -83,10 +64,10 @@ class ArticleController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Budget\Deals  $deals
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Deals $deals)
     {
         //
     }
@@ -94,10 +75,10 @@ class ArticleController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Budget\Deals  $deals
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Deals $deals)
     {
         //
     }
