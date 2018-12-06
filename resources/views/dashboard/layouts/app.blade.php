@@ -35,6 +35,7 @@
 </header>
 <main>
     <div id="app">
+        <div >
         @include('layouts.nav')
         <div class="cms">
             <div class="cms-container">
@@ -44,6 +45,7 @@
             <!-- /cms-container -->
         </div>
         <!-- /cms -->
+        </div>
     </div>
 </main>
 <footer>

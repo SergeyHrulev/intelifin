@@ -15,7 +15,10 @@ class SectionController extends Controller
      */
     public function index()
     {
-        //
+        $sections = Section::all();
+        return view('budget.section.sections', [
+            'sections' => $sections,
+        ]);
     }
 
     /**

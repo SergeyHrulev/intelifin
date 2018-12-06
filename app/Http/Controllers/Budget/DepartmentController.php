@@ -15,23 +15,12 @@ class DepartmentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Payment $payment, $id = 0)
+    public function index(Payment $payment)
     {
-        if ($id === 0){
-            $data = Payment::with('department')->get();
             $departments = Department::all();
             return view('budget.reports.department', [
-                'data' => $data,
-                'departments' => $departments
+                'departments' => $departments,
             ]);
-        }else{
-            $data = Payment::with('departments')->where('departments_id', $id)->get();
-            $departments = Department::all();
-            return view('budget.reports.department', [
-                'data' => $data,
-                'departments' => $departments
-            ]);
-        }
     }
 
     /**
@@ -41,11 +30,9 @@ class DepartmentController extends Controller
      */
     public function create()
     {
-        $departments = Department::with('structuralUnit')->get();
-        $structuralUnit = StructuralUnit::all();
+        $departments = Department::all();
         return view('budget.department.add_department', [
             'departments' => $departments,
-            'structuralUnits' => $structuralUnit
         ]);
     }
 

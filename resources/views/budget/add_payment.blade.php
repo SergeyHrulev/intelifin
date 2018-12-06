@@ -2,6 +2,9 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-md-center">
+        <div class="col-12 justify-content-center">
+            <h1>Создать платеж</h1>
+        </div>
         <div class="col-6">
             <form action="{{ route('payment.store') }}" method="post">
                 {{ csrf_field() }}
@@ -16,7 +19,7 @@
                 </div>
                 <div class="form-group">
                     <label for="">Наименование Департамента</label>
-                    <select name="departments_id" id="departments_id" class="form-control">
+                    <select name="department_id" id="department_id" class="form-control">
                         <option value="0">-- Выберите отдел --</option>
                         @foreach($departments as $department)
                             <option value="{{ $department->id }}">{{ $department->department_name }}</option>

@@ -12,14 +12,14 @@ class Article extends Model
     protected $table = 'barticles';
 
     protected $fillable = [
-        'main_articles_id',
+        'section_id',
         'article_code',
         'article_name',
         'deleted_at'
     ];
 
-    public function mainArticle(){
-        return $this->belongsTo(MainArticle::class, 'main_articles_id', 'id');
+    public function section(){
+        return $this->belongsTo(Section::class);
     }
 
     public function payment(){

@@ -14,7 +14,4 @@ class StructuralUnit extends Model
         'deleted_at'
     ];
 
-    public function department(){
-        return $this->hasMany(Department::class);
-    }
 }

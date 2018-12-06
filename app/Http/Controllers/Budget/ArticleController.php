@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Budget;
 
 use App\Budget\Article;
 use App\Budget\MainArticle;
+use App\Budget\Section;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -16,9 +17,12 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articles = Article::all();
+        $articles = Article::with('section')->get();
+        //dd($articles);
+        $sections = Section::all();
         return view('budget.article.add_article', [
             'articles' => $articles,
+            'sections' => $sections,
         ]);
     }
 
@@ -29,11 +33,11 @@ class ArticleController extends Controller
      */
     public function create(Article $article)
     {
-        $articles = $article->with('mainArticle')->get();
-        $mainArticle = MainArticle::all();
-        //dd($articles);
+        $articles = $article->with('section')->get();
+        $sections = Section::all();
+        //dd($articles, $sections);
         return view('budget.article.add_article', [
-            'mainArticles' => $mainArticle,
+            'sections' => $sections,
             'articles' => $articles
         ]);
     }
@@ -51,7 +55,7 @@ class ArticleController extends Controller
 //        return view('budget.test', ['data' => $data]);
 
         if (Article::create($request->all())){
-            return redirect()->route('article.create');
+            return redirect('budget/article');
         } else {
             return abort(500);
         }

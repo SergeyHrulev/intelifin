@@ -47,7 +47,7 @@ class ContractorController extends Controller
             $data = Contractor::create($request->all());
             return $data;
         } catch (\Exception $e){
-            return 'произошла ошибка';
+            return $e;
         }
     }
 

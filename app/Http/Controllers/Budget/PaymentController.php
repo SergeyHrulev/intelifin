@@ -17,7 +17,7 @@ class PaymentController extends Controller
      */
     public function index(Payment $payment)
     {
-        $data = $payment->with( 'barticles.mainArticle.section', 'department.structuralUnit')->get();
+        $data = $payment->with( 'barticles.section', 'department')->get();
         return view('budget.reports.budget', [
             'data' => $data
         ]);

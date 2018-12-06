@@ -11,7 +11,7 @@ class Payment extends Model
 
     protected $fillable = [
         'barticles_id',
-        'departments_id',
+        'department_id',
         'payment_name',
         'summ',
         'bdr_plan',
@@ -26,6 +26,10 @@ class Payment extends Model
     }
 
     public function department(){
-        return $this->belongsTo(Department::class, 'departments_id', 'id');
+        return $this->belongsTo(Department::class);
+    }
+
+    public function paymentType(){
+        return $this->belongsTo(PaymentType::class, 'payment_type_id');
     }
 }

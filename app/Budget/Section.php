@@ -14,7 +14,7 @@ class Section extends Model
         'deleted_at'
     ];
 
-    public function mainArticle(){
-        return $this->hasMany(MainArticle::class);
+    public function barticle(){
+        return $this->hasMany(Article::class);
     }
 }

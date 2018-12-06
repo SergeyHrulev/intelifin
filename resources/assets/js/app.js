@@ -33,11 +33,13 @@ require('../summernote/dist/lang/summernote-ru-RU');
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-
+Vue.component('budget-report-component', require('./components/BudgetReportComponent.vue'));
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
 Vue.component('create-article-component', require('./components/CreateArticleComponent.vue'));
 Vue.component('add-contractor-component', require('./components/AddContractorComponent.vue'));
 Vue.component('get-contractor-component', require('./components/GetContractorsComponent.vue'));
+Vue.component('department-report-controller', require('./components/DepartmentReportComponent.vue'));
+
 
 const app = new Vue({
     el: '#app',
@@ -59,6 +61,7 @@ const app = new Vue({
 $(function () {
     $('#myTab li:last-child a').tab('show');
     $('a.link').click(function(){window.open($(this).attr("rel"));return false;});
+    $('.cms-menu__link').collapse()
 });
 
 $(document).ready(function() {

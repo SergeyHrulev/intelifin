@@ -5,28 +5,40 @@
             <div class="col-12 justify-content-center m-3">
                 <h1 style="text-align: center;">Все статьи</h1>
             </div>
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>Номер статьи</th>
-                    <th>Наименование статьи</th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach($articles as $article)
-                <tr>
-                    <td>{{ $article->article_code }}</td>
-                    <td>{{ $article->article_name }}</td>
-                </tr>
-                    @endforeach
-                </tbody>
-            </table>
+            <div class="col-6 offset-3 justify-content-center">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Номер статьи</th>
+                        <th>Наименование статьи</th>
+                        <th>Наименование раздела</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($articles as $article)
+                    <tr>
+                        <td>{{ $article->article_code }}</td>
+                        <td>{{ $article->article_name }}</td>
+                        <td>{{ $article->section->section_name }}</td>
+                    </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
         <div class="row justify-content-md-center">
             <div class="col-6 m-5">
-                <form action="{{ route('article.store') }}" method="post">
+                <form action="{{ url('/budget/article') }}" method="post">
                     {{ csrf_field() }}
-
+                    <div class="form-group">
+                        <label for="">Раздел</label>
+                        <select class="form-control" name="section_id">
+                            <option value="">-- Выберите раздел --</option>
+                            @foreach($sections as $section)
+                                <option value="{{ $section->id }}">{{ $section->section_name }}</option>
+                                @endforeach
+                        </select>
+                    </div>
                     <div class="form-group">
                         <label for="">Код статьи</label>
                         <input type="text" class="form-control" id="article_code" name="article_code" value="">
