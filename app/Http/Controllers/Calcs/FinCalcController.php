@@ -44,21 +44,29 @@ class FinCalcController extends Controller
 
         //Собственный капитал
         $estimation['ownkap'] = $data['uf'] + $data['rk'] + $data['nerp'];
+
         //Долгосрочная задолженность
         $estimation['dolgdebp'] = $data['dolz'];
+
         //Внеоборотные активы
         $estimation['noa'] = $data['na'] + $data['ns'] + $data['dfv'] + $data['of'];
+
         //Собственный / рабочий капитал
         $estimation['sk-rk'] = $estimation['ownkap'] + $estimation['dolgdebp'] - $estimation['noa'];
+
         //Текущие активы
         $estimation['curactives'] = $data['sz'] + $data['np'] + $data['zgp'] + $data['t'] + $data['tfi'] +
             $data['dz'] + $data['ds'] + $data['dta'];
+
         //Текущие пассивы
         $estimation['currpassives'] = $data['kbz'] + $data['topr'] + $data['vv'] + $data['kztur'] + $data['pto'];
+
         //ТФП
         $estimation['tfp'] = $estimation['curactives'] - $data['ds'] - $estimation['currpassives'];
+
         //Дефицит / излишек
         $estimation['dsplusminus'] = $estimation['sk-rk'] - $estimation['tfp'];
+
         //Коэффициент текущей ликвидности
         $estimation['liqinindex'] = $estimation['curactives'] / $estimation['currpassives'];
         //Коэффициент финансовой устойчивости

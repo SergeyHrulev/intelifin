@@ -222,6 +222,42 @@
                     sum += Number(this.bsLiability[name]);
                 }
                 return sum;
+            },
+            equity(){
+                let sum = 0;
+                return sum = Number(this.bsLiability.uf) + Number(this.bsLiability.rk) + Number(this.bsLiability.nerp);
+            },
+            ltDebt(){
+                return Number(this.bsLiability.dolz);
+            },
+            fixedAssets(){
+                let sum = 0;
+                return sum = Number(this.bsAsset.na) + Number(this.bsAsset.ns) + Number(this.bsAsset.dfv) + Number(this.bsAsset.of);
+            },
+            nwc(){
+                let sum = 0;
+                return sum = Number(this.bsAsset.sz) + Number(this.bsAsset.np) + Number(this.bsAsset.zgp) + Number(this.bsAsset.t) + Number(this.bsAsset.tfi) + Number(this.bsAsset.dz)
+                + Number(this.bsAsset.ds) + Number(this.bsAsset.dta) - Number(this.bsLiability.krz) - Number(this.bsLiability.topr) - Number(this.bsLiability.vv)
+                - Number(this.bsLiability.kztur) - Number(this.bsLiability.pto);
+            },
+            workingAssets(){
+                let sum = 0;
+                return sum = Number(this.bsAsset.sz) + Number(this.bsAsset.np) + Number(this.bsAsset.zgp) + Number(this.bsAsset.t) + Number(this.bsAsset.tfi) + Number(this.bsAsset.dz)
+                    + Number(this.bsAsset.ds) + Number(this.bsAsset.dta);
+            },
+            workingLiabilities(){
+                let sum = 0;
+                return sum = Number(this.bsLiability.krz) + Number(this.bsLiability.topr) + Number(this.bsLiability.vv)
+                    + Number(this.bsLiability.kztur) + Number(this.bsLiability.dolz) - Number(this.bsLiability.krz);
+            },
+            financialNeeds(){
+                let sum = 0;
+                return sum = Number(this.bsAsset.sz) + Number(this.bsAsset.np) + Number(this.bsAsset.zgp) + Number(this.bsAsset.t) + Number(this.bsAsset.tfi) + Number(this.bsAsset.dz)
+                    + Number(this.bsAsset.ds) + Number(this.bsAsset.dta) + Number(this.bsLiability.pto);
+            },
+            deficitSurplus(){
+                let sum = 0;
+                return sum = this.nwc() - this.financialNeeds();
             }
         }
     }
