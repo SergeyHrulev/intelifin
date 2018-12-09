@@ -88403,6 +88403,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: "BalanceSheetComponent",
@@ -88453,16 +88473,40 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             return sum;
         },
         equity: function equity() {
-            var data = 0;
-            return data = Number(this.bsLiability.uf) + Number(this.bsLiability.rk) + Number(this.bsLiability.nerp);
+            var sum = 0;
+            return sum = Number(this.bsLiability.uf) + Number(this.bsLiability.rk) + Number(this.bsLiability.nerp);
         },
         ltDebt: function ltDebt() {
-            var data = 0;
-            return data = Number(this.bsLiability.dolz);
+            return Number(this.bsLiability.dolz);
         },
         fixedAssets: function fixedAssets() {
-            var data = 0;
-            return data = Number(this.bsAsset.na) + Number(this.bsAsset.ns) + Number(this.bsAsset.dfv) + Number(this.bsAsset.of);
+            var sum = 0;
+            return sum = Number(this.bsAsset.na) + Number(this.bsAsset.ns) + Number(this.bsAsset.dfv) + Number(this.bsAsset.of);
+        },
+        nwc: function nwc() {
+            var sum = 0;
+            return sum = Number(this.bsAsset.sz) + Number(this.bsAsset.np) + Number(this.bsAsset.zgp) + Number(this.bsAsset.t) + Number(this.bsAsset.tfi) + Number(this.bsAsset.dz) + Number(this.bsAsset.ds) + Number(this.bsAsset.dta) - Number(this.bsLiability.krz) - Number(this.bsLiability.topr) - Number(this.bsLiability.vv) - Number(this.bsLiability.kztur) - Number(this.bsLiability.pto);
+        },
+        workingAssets: function workingAssets() {
+            var sum = 0;
+            return sum = Number(this.bsAsset.sz) + Number(this.bsAsset.np) + Number(this.bsAsset.zgp) + Number(this.bsAsset.t) + Number(this.bsAsset.tfi) + Number(this.bsAsset.dz) + Number(this.bsAsset.ds) + Number(this.bsAsset.dta);
+        },
+        workingLiabilities: function workingLiabilities() {
+            //исправить, формула не верна в корне
+            var sum = 0;
+            return sum = Number(this.bsLiability.krz) + Number(this.bsLiability.topr) + Number(this.bsLiability.vv) + Number(this.bsLiability.kztur) + Number(this.bsLiability.dolz) - Number(this.bsLiability.krz);
+        },
+        financialNeeds: function financialNeeds() {
+            var sum = 0;
+            return sum = Number(this.bsAsset.sz) + Number(this.bsAsset.np) + Number(this.bsAsset.zgp) + Number(this.bsAsset.t) + Number(this.bsAsset.tfi) + Number(this.bsAsset.dz) + Number(this.bsAsset.ds) + Number(this.bsAsset.dta) + Number(this.bsLiability.pto);
+        },
+        deficitSurplus: function deficitSurplus() {
+            var sum = 0;
+            return sum = Number(this.bsAsset.sz) + Number(this.bsAsset.np) + Number(this.bsAsset.zgp) + Number(this.bsAsset.t) + Number(this.bsAsset.tfi) + Number(this.bsAsset.dz) + Number(this.bsAsset.ds) + Number(this.bsAsset.dta) - Number(this.bsLiability.krz) - Number(this.bsLiability.topr) - Number(this.bsLiability.vv) - Number(this.bsLiability.kztur) - Number(this.bsLiability.pto) - (Number(this.bsAsset.sz) + Number(this.bsAsset.np) + Number(this.bsAsset.zgp) + Number(this.bsAsset.t) + Number(this.bsAsset.tfi) + Number(this.bsAsset.dz) + Number(this.bsAsset.ds) + Number(this.bsAsset.dta) + Number(this.bsLiability.pto));
+        },
+        debtRatio: function debtRatio() {
+            var sum = 0;
+            return sum = (Number(this.bsLiability.dolz) !== 0 ? Number(this.bsLiability.dolz) : 1) / (Number(this.bsLiability.uf) + Number(this.bsLiability.rk) + Number(this.bsLiability.nerp) !== 0 ? Number(this.bsLiability.uf) + Number(this.bsLiability.rk) + Number(this.bsLiability.nerp) : 1);
         }
     }
 });
@@ -89099,13 +89143,13 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "row" }, [
+    _c("div", { staticClass: "row my-2" }, [
       _c("div", { staticClass: "col-4" }, [_vm._v("Собственный капитал")]),
       _vm._v(" "),
       _c("div", { staticClass: "col-2" }, [_vm._v(_vm._s(_vm.equity))])
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "row" }, [
+    _c("div", { staticClass: "row my-2" }, [
       _c("div", { staticClass: "col-4" }, [
         _vm._v("Долгосрочная задолженность")
       ]),
@@ -89113,18 +89157,56 @@ var render = function() {
       _c("div", { staticClass: "col-2" }, [_vm._v(_vm._s(_vm.ltDebt))])
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "row" }, [
+    _c("div", { staticClass: "row my-2" }, [
       _c("div", { staticClass: "col-4" }, [_vm._v("Внеоборотные активы")]),
       _vm._v(" "),
       _c("div", { staticClass: "col-2" }, [_vm._v(_vm._s(_vm.fixedAssets))])
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "row" }, [
+    _c("div", { staticClass: "row my-2" }, [
       _c("div", { staticClass: "col-4" }, [
         _vm._v("Собственный (рабочий) капитал")
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "col-2" }, [_vm._v(_vm._s(_vm.fixedAssets))])
+      _c("div", { staticClass: "col-2" }, [_vm._v(_vm._s(_vm.nwc))])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row my-2" }, [
+      _c("div", { staticClass: "col-4" }, [_vm._v("Рабочие активы")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-2" }, [_vm._v(_vm._s(_vm.workingAssets))])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row my-2" }, [
+      _c("div", { staticClass: "col-4" }, [_vm._v("Рабочие пассивы")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-2" }, [
+        _vm._v(_vm._s(_vm.workingLiabilities))
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row my-2" }, [
+      _c("div", { staticClass: "col-4" }, [
+        _vm._v("Потребности в финансировании")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-2" }, [_vm._v(_vm._s(_vm.financialNeeds))])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row my-2" }, [
+      _c("div", { staticClass: "col-4" }, [
+        _vm._v("Дефицит/излишек краткосрочного финансирования ")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-2" }, [_vm._v(_vm._s(_vm.deficitSurplus))])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row my-2" }, [
+      _c("div", { staticClass: "col-4" }, [
+        _vm._v("Коэффициент долговой нагрузки")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-2" }, [_vm._v(_vm._s(_vm.debtRatio))])
     ])
   ])
 }

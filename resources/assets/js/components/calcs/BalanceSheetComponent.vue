@@ -171,21 +171,41 @@
                 </table>
             </div>
         </div>
-        <div class="row">
+        <div class="row my-2">
                 <div class="col-4">Собственный капитал</div>
                 <div class="col-2">{{ equity }}</div>
         </div>
-        <div class="row">
+        <div class="row my-2">
                 <div class="col-4">Долгосрочная задолженность</div>
                 <div class="col-2">{{ ltDebt }}</div>
         </div>
-        <div class="row">
+        <div class="row my-2">
                 <div class="col-4">Внеоборотные активы</div>
                 <div class="col-2">{{ fixedAssets }}</div>
         </div>
-        <div class="row">
+        <div class="row my-2">
                 <div class="col-4">Собственный (рабочий) капитал</div>
-                <div class="col-2">{{ fixedAssets }}</div>
+                <div class="col-2">{{ nwc }}</div>
+        </div>
+        <div class="row my-2">
+                <div class="col-4">Рабочие активы</div>
+                <div class="col-2">{{ workingAssets }}</div>
+        </div>
+        <div class="row my-2">
+                <div class="col-4">Рабочие пассивы</div>
+                <div class="col-2">{{ workingLiabilities }}</div>
+        </div>
+        <div class="row my-2">
+                <div class="col-4">Потребности в финансировании</div>
+                <div class="col-2">{{ financialNeeds }}</div>
+        </div>
+        <div class="row my-2">
+                <div class="col-4">Дефицит/излишек краткосрочного финансирования </div>
+                <div class="col-2">{{ deficitSurplus }}</div>
+        </div>
+        <div class="row my-2">
+                <div class="col-4">Коэффициент долговой нагрузки</div>
+                <div class="col-2">{{ debtRatio }}</div>
         </div>
     </div>
 </template>
@@ -239,18 +259,50 @@
                 return sum;
             },
             equity(){
-                let data = 0;
-                return data = Number(this.bsLiability.uf) + Number(this.bsLiability.rk) + Number(this.bsLiability.nerp);
+                let sum = 0;
+                return sum = Number(this.bsLiability.uf) + Number(this.bsLiability.rk) + Number(this.bsLiability.nerp);
             },
             ltDebt(){
-                let data = 0;
-                return data = Number(this.bsLiability.dolz);
+                return Number(this.bsLiability.dolz);
             },
             fixedAssets(){
-                let data = 0;
-                return data = Number(this.bsAsset.na) + Number(this.bsAsset.ns) + Number(this.bsAsset.dfv) + Number(this.bsAsset.of);
+                let sum = 0;
+                return sum = Number(this.bsAsset.na) + Number(this.bsAsset.ns) + Number(this.bsAsset.dfv) + Number(this.bsAsset.of);
             },
-
+            nwc(){
+                let sum = 0;
+                return sum = Number(this.bsAsset.sz) + Number(this.bsAsset.np) + Number(this.bsAsset.zgp) + Number(this.bsAsset.t) + Number(this.bsAsset.tfi) + Number(this.bsAsset.dz)
+                + Number(this.bsAsset.ds) + Number(this.bsAsset.dta) - Number(this.bsLiability.krz) - Number(this.bsLiability.topr) - Number(this.bsLiability.vv)
+                - Number(this.bsLiability.kztur) - Number(this.bsLiability.pto);
+            },
+            workingAssets(){
+                let sum = 0;
+                return sum = Number(this.bsAsset.sz) + Number(this.bsAsset.np) + Number(this.bsAsset.zgp) + Number(this.bsAsset.t) + Number(this.bsAsset.tfi) + Number(this.bsAsset.dz)
+                    + Number(this.bsAsset.ds) + Number(this.bsAsset.dta);
+            },
+            workingLiabilities(){ //исправить, формула не верна в корне
+                let sum = 0;
+                return sum = Number(this.bsLiability.krz) + Number(this.bsLiability.topr) + Number(this.bsLiability.vv)
+                    + Number(this.bsLiability.kztur) + Number(this.bsLiability.dolz) - Number(this.bsLiability.krz);
+            },
+            financialNeeds(){
+                let sum = 0;
+                return sum = Number(this.bsAsset.sz) + Number(this.bsAsset.np) + Number(this.bsAsset.zgp) + Number(this.bsAsset.t) + Number(this.bsAsset.tfi) + Number(this.bsAsset.dz)
+                    + Number(this.bsAsset.ds) + Number(this.bsAsset.dta) + Number(this.bsLiability.pto);
+            },
+            deficitSurplus(){
+                let sum = 0;
+                return sum = (Number(this.bsAsset.sz) + Number(this.bsAsset.np) + Number(this.bsAsset.zgp) + Number(this.bsAsset.t) + Number(this.bsAsset.tfi) + Number(this.bsAsset.dz)
+                    + Number(this.bsAsset.ds) + Number(this.bsAsset.dta) - Number(this.bsLiability.krz) - Number(this.bsLiability.topr) - Number(this.bsLiability.vv)
+                    - Number(this.bsLiability.kztur) - Number(this.bsLiability.pto)) - (Number(this.bsAsset.sz) + Number(this.bsAsset.np) + Number(this.bsAsset.zgp) + Number(this.bsAsset.t) + Number(this.bsAsset.tfi) + Number(this.bsAsset.dz)
+                    + Number(this.bsAsset.ds) + Number(this.bsAsset.dta) + Number(this.bsLiability.pto));
+            },
+            debtRatio(){
+                let sum = 0;
+                return sum = (Number(this.bsLiability.dolz) !== 0 ? Number(this.bsLiability.dolz) : 1) /
+                    ((Number(this.bsLiability.uf) + Number(this.bsLiability.rk) + Number(this.bsLiability.nerp)) !== 0 ? (Number(this.bsLiability.uf) + Number(this.bsLiability.rk) + Number(this.bsLiability.nerp))
+                    : 1);
+            }
         }
     }
 </script>
