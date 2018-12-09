@@ -39,4 +39,8 @@ class PagesController extends Controller
     public function mainAbout(){
         return view('dashboard.pages.cms-main-about');
     }
+
+    public function createArticle(){
+        return view('dashboard.pages.cms-main-popular');
+    }
 }

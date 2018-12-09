@@ -88,7 +88,8 @@
                     <tr>
                         <td>БАЛАНС</td>
                         <td :class="{ table_alert: assetSum < liabilitySum }">
-                            {{ assetSum }}
+                            <span v-if="assetSum - liabilitySum !== 0">{{ assetSum - liabilitySum }}</span>
+                            <span v-else>{{ assetSum }}</span>
                         </td>
                     </tr>
                     </tbody>
@@ -162,15 +163,29 @@
                     <tr>
                         <td>БАЛАНС</td>
                         <td :class="{ table_alert: liabilitySum < assetSum }">
-                            {{ liabilitySum }}
+                            <span v-if="liabilitySum - assetSum !== 0">{{ liabilitySum - assetSum }}</span>
+                            <span v-else>{{ liabilitySum }}</span>
                         </td>
                     </tr>
                     </tbody>
                 </table>
             </div>
-            <div class="col-12">
-                <h2 style="background-color: rebeccapurple;">{{ assetSum - liabilitySum }}</h2>
-            </div>
+        </div>
+        <div class="row">
+                <div class="col-4">Собственный капитал</div>
+                <div class="col-2">{{ equity }}</div>
+        </div>
+        <div class="row">
+                <div class="col-4">Долгосрочная задолженность</div>
+                <div class="col-2">{{ ltDebt }}</div>
+        </div>
+        <div class="row">
+                <div class="col-4">Внеоборотные активы</div>
+                <div class="col-2">{{ fixedAssets }}</div>
+        </div>
+        <div class="row">
+                <div class="col-4">Собственный (рабочий) капитал</div>
+                <div class="col-2">{{ fixedAssets }}</div>
         </div>
     </div>
 </template>
@@ -222,7 +237,20 @@
                     sum += Number(this.bsLiability[name]);
                 }
                 return sum;
-            }
+            },
+            equity(){
+                let data = 0;
+                return data = Number(this.bsLiability.uf) + Number(this.bsLiability.rk) + Number(this.bsLiability.nerp);
+            },
+            ltDebt(){
+                let data = 0;
+                return data = Number(this.bsLiability.dolz);
+            },
+            fixedAssets(){
+                let data = 0;
+                return data = Number(this.bsAsset.na) + Number(this.bsAsset.ns) + Number(this.bsAsset.dfv) + Number(this.bsAsset.of);
+            },
+
         }
     }
 </script>

@@ -46,8 +46,10 @@ class FinCalcController extends Controller
         $estimation['ownkap'] = $data['uf'] + $data['rk'] + $data['nerp'];
         //Долгосрочная задолженность
         $estimation['dolgdebp'] = $data['dolz'];
+
         //Внеоборотные активы
         $estimation['noa'] = $data['na'] + $data['ns'] + $data['dfv'] + $data['of'];
+
         //Собственный / рабочий капитал
         $estimation['sk-rk'] = $estimation['ownkap'] + $estimation['dolgdebp'] - $estimation['noa'];
         //Текущие активы
